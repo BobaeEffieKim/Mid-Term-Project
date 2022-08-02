@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.edu.vo.BoardVO;
+import co.edu.vo.Criteria;
 
 public class BoardDAO extends DAO {
 	
@@ -91,4 +92,46 @@ public class BoardDAO extends DAO {
 		}
 		return null;
 	}
+	
+	//페이징 처리
+	public List<BoardVO> getListPaging(Criteria cri){
+		
+		List<BoardVO> listPage = new ArrayList<>();
+		
+		String sql = "select seq,title,content, writer, write_date, visit_cnt "
+				+ "from(select rownum rn, seq, title, content, writer, write_date, visit_cnt "
+				+ "from(select  seq,title, content, writer, write_date, visit_cnt "
+				+ "from test_board "
+				+ "order by seq desc) "
+				+ "where rownum <= ? ) "	// 1: 0~10, 2: 10~20
+				+ "where rn> ? ";
+		
+		connect();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cri.getAmount() * cri.getPageNum());	//10*1
+			pstmt.setInt(2, cri.getAmount() * (cri.getPageNum() -1 ));	//0
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BoardVO board = new BoardVO();
+				board.setSeq(rs.getInt("seq"));
+				board.setTitle(rs.getString("title"));
+				board.setWriteDate(rs.getString("write_date"));
+				board.setWriter(rs.getString("writer"));
+				board.setContent(rs.getString("content"));
+				board.setVisitCnt(rs.getInt("visit_cnt"));
+			
+				listPage.add(board);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return listPage;
+	}
+	
+	
 }

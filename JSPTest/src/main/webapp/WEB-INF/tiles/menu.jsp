@@ -20,7 +20,7 @@
 
 			<li class="nav-item"><a class="nav-link" href="addBoardForm.do">게시글 등록</a> </li>
 
-			<li class="nav-item"><a class="nav-link" href="boardList.do">게시글 목록</a></li>
+			<li class="nav-item"><a class="nav-link" href="boardListPaging.do?pageNum=3&amount=10">게시글 목록</a></li>
 
 			<c:choose>
 				<c:when test="${empty id }">

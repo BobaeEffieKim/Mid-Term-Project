@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="home" template="/WEB-INF/tiles/template/template.jsp">
+		<put-attribute name="visiter" value="/WEB-INF/tiles/template/visiter.jsp" />
+		<put-attribute name="profile" value="/WEB-INF/tiles/template/profile.jsp" />
+		<put-attribute name="title" value="/WEB-INF/tiles/template/title.jsp" />
+		<put-attribute name="middle" value="/WEB-INF/tiles/template/middle.jsp" />
+		<put-attribute name="tab" value="/WEB-INF/tiles/template/tab.jsp" />
+	</definition>
+
+	<definition name="WILDCARD:*/middle" extends="home">
+		<put-attribute name="middle" value="/WEB-INF/jsp/{1}/middle.jsp" />
+	</definition>
+	
+	<definition name="WILDCARD:*/profile" extends="home">
+		<put-attribute name="profile" value="/WEB-INF/jsp/{1}/profile.jsp" />
+	</definition>
+</tiles-definitions>
