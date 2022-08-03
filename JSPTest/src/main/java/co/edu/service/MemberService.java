@@ -23,5 +23,8 @@ public class MemberService {
 	public MemberVO searchMember(String id) {
 		return mdao.searchMember(id);
 	}
+	public void updateCart(int no, int qty) {
+		
+	}
 	
 }

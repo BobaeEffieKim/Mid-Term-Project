@@ -42,6 +42,9 @@ public class FrontController extends HttpServlet {
 		//페이징하는 컨트롤러 추가
 		mappings.put("/boardListPaging.do", new BoardListPagingControl());
 		
+		//ajax가지고오는 컨트롤러 추가
+		mappings.put("/cartList.do", new CartListControl());
+		mappings.put("/cartUpdate.do", new CartUpdateControl());
 	}
 
 	@Override

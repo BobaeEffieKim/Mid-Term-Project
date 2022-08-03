@@ -25,7 +25,7 @@
 		<!-- Editable user database that can also be used by UserDatabaseRealm 
 			to authenticate users -->
 
-		<Resource driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="4" maxIdel="2" maxWait="5000" name="jdbc/myoracle" password="world" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="world"/>
+		<Resource driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="4" maxIdel="2" maxWait="5000" name="jdbc/myoracle" password="hr" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="hr"/>
 
 		<Resource auth="Container" description="User database that can be updated and saved" factory="org.apache.catalina.users.MemoryUserDatabaseFactory" name="UserDatabase" pathname="conf/tomcat-users.xml" type="org.apache.catalina.UserDatabase"/>
 	</GlobalNamingResources>
@@ -107,7 +107,7 @@
 
 				
 				
-			<Context docBase="52world" path="/5252" reloadable="true" source="org.eclipse.jst.jee.server:52world"/></Host>
+			<Context docBase="JSPTest" path="/JSPTest" reloadable="true" source="org.eclipse.jst.jee.server:JSPTest"/></Host>
 		</Engine>
 	</Service>
 </Server>

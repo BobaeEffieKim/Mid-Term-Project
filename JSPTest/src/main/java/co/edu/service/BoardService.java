@@ -4,6 +4,7 @@ import java.util.List;
 
 import co.edu.dao.BoardDAO;
 import co.edu.vo.BoardVO;
+import co.edu.vo.CartVO;
 import co.edu.vo.Criteria;
 
 public class BoardService {
@@ -31,4 +32,15 @@ public class BoardService {
 	public List<BoardVO> getListPaging(Criteria cri){
 		return bdao.getListPaging(cri);	//10건씩
 	}
+	
+	//cart 목록
+	public List<CartVO> cartList(){
+		return bdao.cartList();
+	}
+	
+	//수량변경
+	public void updateCart(int no, int qty) {
+		bdao.updateCart(no, qty);
+	}
+	
 }

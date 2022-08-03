@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.edu.vo.BoardVO;
+import co.edu.vo.CartVO;
 import co.edu.vo.Criteria;
 
 public class BoardDAO extends DAO {
@@ -131,6 +132,55 @@ public class BoardDAO extends DAO {
 			disconnect();
 		}
 		return listPage;
+	}
+	
+	
+	//cart 전체 데이터 가지고오는 메소드
+	public List<CartVO> cartList(){
+		
+		String sql = "select * from cart";
+		List<CartVO> cartList = new ArrayList<>();
+		connect();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				CartVO cart = new CartVO();
+				cart.setNo(rs.getInt("no"));
+				cart.setProductNm(rs.getString("product_nm"));
+				cart.setPrice(rs.getInt("price"));
+				cart.setQty(rs.getInt("qty"));
+				
+				cartList.add(cart);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return cartList;
+	}
+	
+	//수량변경
+	public void updateCart(int no, int qty) {
+		String sql = "update cart set qty = " + qty + "where no = "+no;
+		connect();
+		
+		try {
+			stmt = conn.createStatement();
+			int r = stmt.executeUpdate(sql);
+			
+			if(r>0) {
+				System.out.println(r+"건 수정");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
 	}
 	
 	
